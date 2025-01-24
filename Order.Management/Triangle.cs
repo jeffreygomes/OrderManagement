@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Order.Management
 {
-    class Triangle : Shape
+    class Triangle : ShapeOld
     {
         public int TrianglePrice = 2;
         public Triangle(int numberOfRedTriangles, int numberOfBlueTriangles, int numberOfYellowTriangles)

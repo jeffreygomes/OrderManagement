@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Order.Management
 {
-    class Square : Shape
+    class Square : ShapeOld
     {
 
         public int SquarePrice = 1;

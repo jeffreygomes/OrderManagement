@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Order.Management
 {
-    class Circle : Shape
+    class Circle : ShapeOld
     {
         public int circlePrice = 3;
         public Circle(int red, int blue, int yellow)
