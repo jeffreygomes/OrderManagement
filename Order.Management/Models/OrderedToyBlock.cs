@@ -5,7 +5,7 @@ namespace Order.Management.Models
     public class OrderedToyBlock
     {
         public Shape Shape { get; set; }
-        public Colour Colour { get; set; }
+        public Color Color { get; set; }
         public int Quantity { get; set; }
     }
 }

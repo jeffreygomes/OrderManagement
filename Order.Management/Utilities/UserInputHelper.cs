@@ -27,14 +27,14 @@ namespace Order.Management.Utilities
             foreach (Shape shape in AvailableShapes)
             {
                 Console.WriteLine();
-                foreach (Colour colour in AvailableColours)
+                foreach (Color color in AvailableColors)
                 {
-                    Console.Write($"Please input the number of {colour} {shape}s: ");
+                    Console.Write($"Please input the number of {color} {shape}s: ");
                     var quantity = GetNumberInput();
                     orderedShapes.Add(new OrderedToyBlock()
                     {
                         Shape = shape,
-                        Colour = colour,
+                        Color = color,
                         Quantity = quantity
                     });
                 }
@@ -61,7 +61,7 @@ namespace Order.Management.Utilities
         {
             string inputString = Console.ReadLine();
             int inputNumber;
-            while (!Int32.TryParse(inputString, out inputNumber) && string.IsNullOrWhiteSpace(inputString))
+            while (!Int32.TryParse(inputString, out inputNumber) && inputNumber < 0)
             {
                 Console.WriteLine("Please enter a valid number");
                 inputString = Console.ReadLine();

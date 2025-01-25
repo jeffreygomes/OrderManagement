@@ -14,29 +14,33 @@ namespace Order.Management.Reports
 
         public override void GenerateReport()
         {
-            // TODO: Consider generating totals of entire order
             SetTableWidth(TABLE_WIDTH);
             Console.WriteLine("\nYour invoice report has been generated: ");
             Console.WriteLine(_order.ToString());
             GenerateTable();
-            GenerateOrderDetailsByShape();
-            GenerateRedPaintSurcharge();
+            GenerateOrderDetails();
         }
 
-        public void GenerateOrderDetailsByShape()
+        private void GenerateOrderDetails()
         {
+            // Calculate and display price by shapes
+            var invoiceTotal = 0M;
             foreach (Shape shape in AvailableShapes)
             {
                 var shapeQuantity = _order.GetQuantityByShape(shape);
-                var shapePrice = GetShapePrice(shape);
-                Console.WriteLine(                    $"{shape}s 		  {shapeQuantity} @ ${shapePrice} ppi = ${shapeQuantity * shapePrice}");
+                var shapeUnitPrice = GetShapePrice(shape);
+                var costByBlock = shapeQuantity * shapeUnitPrice;
+                invoiceTotal += costByBlock;
+                Console.WriteLine($"{shape}s 		  {shapeQuantity} @ ${shapeUnitPrice} ppi = ${costByBlock}");
             }
-        }
 
-        public void GenerateRedPaintSurcharge()
-        {
-            var redShapeQuantity = _order.GetQuantityByColour(Colour.Red);
-            Console.WriteLine($"Red Colour Surcharge      { redShapeQuantity} @ ${Constants.AdditionalCharge} ppi = ${redShapeQuantity * Constants.AdditionalCharge}");
+            // Calculate and display red paint surcharge
+            var redShapeQuantity = _order.GetQuantityByColor(Color.Red);
+            var redPaintSurcharge = redShapeQuantity * Constants.RedPaintAdditionalCharge;
+            invoiceTotal += redPaintSurcharge;
+            Console.WriteLine($"Red Color Surcharge       {redShapeQuantity} @ ${Constants.RedPaintAdditionalCharge} ppi = ${redPaintSurcharge}");
+
+            Console.WriteLine($"\nTotal: ${invoiceTotal}");
         }
     }
 }

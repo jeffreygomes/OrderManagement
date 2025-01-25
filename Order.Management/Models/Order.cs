@@ -13,7 +13,7 @@ namespace Order.Management.Models
 
         public override string ToString()
         {
-            return "\nName: " + CustomerName + " Address: " + Address + " Due Date: " + DueDate.ToShortDateString() + " Order #: " + OrderNumber;
+            return "\nName: " + CustomerName + " Address: " + Address + " Due Date: " + DueDate.ToString("dd MMM yyyy") + " Order #: " + OrderNumber;
         }
     }
 }

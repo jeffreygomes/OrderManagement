@@ -11,7 +11,7 @@ namespace Order.Management.Models
         public const decimal TrianglePrice = 2;
         public const decimal CirclePrice = 3;
 
-        public const decimal AdditionalCharge = 1; // Only charged for Red colour blocks
+        public const decimal RedPaintAdditionalCharge = 1; // Only charged for Red color blocks
 
         // Toy Block Attributes
         public enum Shape
@@ -21,7 +21,7 @@ namespace Order.Management.Models
             Circle
         }
 
-        public enum Colour
+        public enum Color
         {
             Red,
             Blue,
@@ -29,7 +29,7 @@ namespace Order.Management.Models
         }
 
         public static List<Shape> AvailableShapes => Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
-        public static List<Colour> AvailableColours => Enum.GetValues(typeof(Colour)).Cast<Colour>().ToList();
+        public static List<Color> AvailableColors => Enum.GetValues(typeof(Color)).Cast<Color>().ToList();
 
         public static decimal GetShapePrice(Enum shape)
         {

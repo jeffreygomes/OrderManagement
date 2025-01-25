@@ -10,13 +10,13 @@ namespace Order.Management.Utilities
         {
             return order.OrderedBlocks.Where(block => block.Shape.Equals(shape)).ToList().Sum(block => block.Quantity);
         }
-        public static int GetQuantityByColour(this Models.Order order, Colour colour)
+        public static int GetQuantityByColor(this Models.Order order, Color color)
         {
-            return order.OrderedBlocks.Where(block => block.Colour.Equals(colour)).ToList().Sum(block => block.Quantity);
+            return order.OrderedBlocks.Where(block => block.Color.Equals(color)).ToList().Sum(block => block.Quantity);
         }
-        public static int GetQuantityByShapeAndColour(this Models.Order order, Shape shape, Colour colour)
+        public static int GetQuantityByShapeAndColor(this Models.Order order, Shape shape, Color color)
         {
-            return order.OrderedBlocks.Where(block => block.Shape.Equals(shape) && block.Colour.Equals(colour)).ToList().Sum(block => block.Quantity);
+            return order.OrderedBlocks.Where(block => block.Shape.Equals(shape) && block.Color.Equals(color)).ToList().Sum(block => block.Quantity);
         }        
         public static int GenerateOrderNumber()
         {

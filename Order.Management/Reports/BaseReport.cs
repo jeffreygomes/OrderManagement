@@ -29,9 +29,9 @@ namespace Order.Management.Reports
             {
                 PrintRow(
                     shape,
-                    _order.GetQuantityByShapeAndColour(shape, Colour.Red),
-                    _order.GetQuantityByShapeAndColour(shape, Colour.Blue),
-                    _order.GetQuantityByShapeAndColour(shape, Colour.Yellow)
+                    _order.GetQuantityByShapeAndColor(shape, Color.Red),
+                    _order.GetQuantityByShapeAndColor(shape, Color.Blue),
+                    _order.GetQuantityByShapeAndColor(shape, Color.Yellow)
                 );
             }
             PrintLine();
@@ -49,7 +49,9 @@ namespace Order.Management.Reports
 
             foreach (object column in columns)
             {
-                row += AlignCentre(column.ToString(), width) + "|";
+                var cellValue = column.ToString();
+                cellValue = cellValue.Equals("0") ? "-" : cellValue;
+                row += AlignCentre(cellValue, width) + "|";
             }
 
             Console.WriteLine(row);
