@@ -1,21 +1,14 @@
-﻿using Microsoft.VisualBasic;
-using Order.Management.Models;
-using Order.Management.Utils;
+﻿using Order.Management.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Net;
-using System.Text;
 using static Order.Management.Models.Constants;
 
 namespace Order.Management.Reports
 {
-    public abstract class Report
+    public abstract class BaseReport
     {
-        private int TableWidth = 73;
-
         protected readonly Models.Order _order;
-        protected Report(Models.Order order) 
+        protected int _tableWidth;
+        protected BaseReport(Models.Order order) 
         { 
             _order = order;
         }
@@ -23,10 +16,10 @@ namespace Order.Management.Reports
 
         protected void SetTableWidth(int width)
         {
-            TableWidth = width;
+            _tableWidth = width;
         }
 
-        public void GenerateTable()
+        protected void GenerateTable()
         {
             PrintLine();
             PrintRow("        ", "   Red   ", "  Blue  ", " Yellow ");
@@ -44,19 +37,19 @@ namespace Order.Management.Reports
             PrintLine();
         }
 
-        public void PrintLine()
+        protected void PrintLine()
         {
-            Console.WriteLine(new string('-', TableWidth));
+            Console.WriteLine(new string('-', _tableWidth));
         }
 
-        public void PrintRow(params object[] columns)
+        protected void PrintRow(params object[] columns)
         {
-            int width = (TableWidth - columns.Length) / columns.Length;
+            int width = (_tableWidth - columns.Length) / columns.Length;
             string row = "|";
 
-            foreach (string column in columns)
+            foreach (object column in columns)
             {
-                row += AlignCentre(column, width) + "|";
+                row += AlignCentre(column.ToString(), width) + "|";
             }
 
             Console.WriteLine(row);

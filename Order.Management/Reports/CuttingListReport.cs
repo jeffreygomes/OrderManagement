@@ -1,19 +1,19 @@
 ﻿using System;
-using Order.Management.Utils;
+using Order.Management.Utilities;
 using static Order.Management.Models.Constants;
 
 namespace Order.Management.Reports
 {
-    class CuttingListReport : Report
+    class CuttingListReport : BaseReport
     {
-        public int TableWidth = 20;
+        private static readonly int TABLE_WIDTH = 20;
         public CuttingListReport(Models.Order order) : base(order)
         {
         }
 
         public override void GenerateReport()
         {
-            SetTableWidth(TableWidth);
+            SetTableWidth(TABLE_WIDTH);
             Console.WriteLine("\nYour cutting list has been generated: ");
             Console.WriteLine(_order.ToString());
             GenerateCuttingListTable();

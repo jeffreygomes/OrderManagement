@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Order.Management.Models
 {
     public static class Constants
     {
+        // Toy Block Prices
         public const decimal SquarePrice = 1;
         public const decimal TrianglePrice = 2;
         public const decimal CirclePrice = 3;
 
-        public const decimal AdditionalCharge = 1;
+        public const decimal AdditionalCharge = 1; // Only charged for Red colour blocks
 
+        // Toy Block Attributes
         public enum Shape
         {
             Square,
@@ -27,8 +28,8 @@ namespace Order.Management.Models
             Yellow
         }
 
-        public static List<Shape> AvailableShapes => (List<Shape>) Enum.GetValues(typeof(Shape)).Cast<Shape>();
-        public static List<Colour> AvailableColours => (List<Colour>) Enum.GetValues(typeof(Colour)).Cast<Colour>();
+        public static List<Shape> AvailableShapes => Enum.GetValues(typeof(Shape)).Cast<Shape>().ToList();
+        public static List<Colour> AvailableColours => Enum.GetValues(typeof(Colour)).Cast<Colour>().ToList();
 
         public static decimal GetShapePrice(Enum shape)
         {
